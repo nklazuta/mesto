@@ -1,0 +1,21 @@
+.profile__about {
+    width: 100%;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.21;
+    color: #FFFFFF;
+    text-align: center;
+    margin: 0;
+    padding: 14px 0 0;
+}
+
+@media screen and (min-width: 900px) {
+    .profile__about {
+        font-size: 18px;
+        line-height: 1.22;
+        text-align: left;
+        padding: 16px 0 0;
+    }
+}
