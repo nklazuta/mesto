@@ -1,5 +1,4 @@
 .profile__name {
-    font-family: Inter;
     font-style: normal;
     font-weight: 500;
     font-size: 27px;
@@ -11,6 +10,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    grid-area: name;
 }
 
 @media screen and (min-width: 900px) {
