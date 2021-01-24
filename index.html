@@ -17,10 +17,10 @@
             <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар пользователя">
             <div class="profile__info">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <div class="profile__edit-button"></div>
+                <button class="profile__edit-button"></button>
                 <p class="profile__about">Исследователь океана</p>
             </div>
-            <div class="profile__add-button"></div>
+            <button class="profile__add-button"></button>
         </section>
 
         <section class="elements">
@@ -28,37 +28,37 @@
                 <li class="element">
                     <img class="element__image" src="./images/altai-sergei-wing-z1JGcZdCTWk-unsplash.jpg" alt="Алтай">
                     <h2 class="element__title">Алтай</h2>
-                    <div class="element__like-button"></div>
+                    <button class="element__like-button"></button>
                 </li>
 
                 <li class="element">
                     <img class="element__image" src="./images/saint-petersburg-ilia-schelkanov-ctN79wemAI4-unsplash.jpg" alt="Санкт-Петербург">
                     <h2 class="element__title">Санкт-Петербург</h2>
-                    <div class="element__like-button"></div>
+                    <button class="element__like-button"></button>
                 </li>
 
                 <li class="element">
                     <img class="element__image" src="./images/baikal-artemis-faul-4ikF7mfy7c0-unsplash.jpg" alt="Байкал">
                     <h2 class="element__title">Байкал</h2>
-                    <div class="element__like-button"></div>
+                    <button class="element__like-button"></button>
                 </li>
 
                 <li class="element">
                     <img class="element__image" src="./images/sochi-igor-starkov-EMeGuuE3DLg-unsplash.jpg" alt="Сочи">
                     <h2 class="element__title">Сочи</h2>
-                    <div class="element__like-button"></div>
+                    <button class="element__like-button"></button>
                 </li>
 
                 <li class="element">
                     <img class="element__image" src="./images/teriberka-alexey-elfimov-_BPNxHTwoMM-unsplash.jpg" alt="Териберка">
                     <h2 class="element__title">Териберка</h2>
-                    <div class="element__like-button"></div>
+                    <button class="element__like-button"></button>
                 </li>
 
                 <li class="element">
                     <img class="element__image" src="./images/vladivostok-pavel-anoshin-Sr79GsbRHjg-unsplash.jpg" alt="Владивосток">
                     <h2 class="element__title">Владивосток</h2>
-                    <div class="element__like-button"></div>
+                    <button class="element__like-button"></button>
                 </li>
             </ul>
         </section>
@@ -67,5 +67,16 @@
     <footer class="footer">
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
+
+    <section class="popup">
+        <form class="popup__container">
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <input class="popup__new-name" type="text" value="Жак-Ив Кусто">
+            <input class="popup__new-about" type="text" value="Исследователь океана">
+            <button class="popup__submit-button" type="submit">Сохранить</button>
+            <button class="popup__close-button"></button>
+        </form>
+    </section>
+    <script src="./scripts/index.js"></script>
 </body>
 </html>
