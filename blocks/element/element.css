@@ -1,0 +1,12 @@
+.element {
+    min-width: 282px;
+    width: 100%;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, minmax(min-content, max-content));
+    grid-template-areas:
+    "image image"
+    "title like";
+}
