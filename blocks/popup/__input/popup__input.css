@@ -1,4 +1,4 @@
-.popup__new-name {
+.popup__input {
     width: 100%;
     font-family: inherit;
     font-style: normal;
@@ -11,4 +11,14 @@
     border: none;
     outline: none;
     border-bottom: 1px solid  rgba(0, 0, 0, .2);
+}
+
+.popup__input:nth-child(3) {
+    margin: 0 0 45px;
+}
+
+@media screen and (min-width: 900px) {
+    .popup__input:nth-child(3) {
+        margin: 0 0 48px;
+    }
 }

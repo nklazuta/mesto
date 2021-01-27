@@ -1,5 +1,6 @@
 .footer {
     width: calc(100% - 38px);
+    flex-shrink: 0;
     padding-top: 48px;
     padding-bottom: 36px;
     margin: 0 auto;
@@ -10,6 +11,5 @@
         width: 100%;
         padding-top: 67px;
         padding-bottom: 60px;
-        margin: 0;
     }
 }
