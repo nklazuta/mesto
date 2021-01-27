@@ -1,29 +1,27 @@
 let editButton = document.querySelector('.profile__edit-button')
+let profileName = document.querySelector('.profile__name')
+let profileAbout = document.querySelector('.profile__about')
 let popup = document.querySelector('.popup')
 let closeButton = popup.querySelector('.popup__close-button')
+let form = popup.querySelector('.popup__form')
+let nameInput = form.querySelector('.popup__input_type_name')
+let aboutInput = form.querySelector('.popup__input_type_about')
 
-let togglePopup = () => {
-    popup.classList.toggle('popup_opened')
+function openPopup() {
+    popup.classList.add('popup_opened')
 }
 
-editButton.addEventListener('click', togglePopup)
-closeButton.addEventListener('click', togglePopup)
+function closePopup() {
+    popup.classList.remove('popup_opened')
+}
 
-popup.addEventListener('click', (event) => {
-    if (event.target === event.currentTarget) {
-        togglePopup()
-    }
-})
-
-let form = popup.querySelector('.popup__container')
-
-form.addEventListener('submit', event => {
+function formSubmitHandler (event) {
     event.preventDefault()
-    let newName = form.querySelector('.popup__new-name').value
-    let newAbout = form.querySelector('.popup__new-about').value
-    let profileName = document.querySelector('.profile__name')
-    let profileAbout = document.querySelector('.profile__about')
-    profileName.textContent = newName
-    profileAbout.textContent = newAbout
-    togglePopup()
-})
+    profileName.textContent = nameInput.value
+    profileAbout.textContent = aboutInput.value
+    closePopup()
+}
+
+editButton.addEventListener('click', openPopup)
+closeButton.addEventListener('click', closePopup)
+form.addEventListener('submit', formSubmitHandler)
