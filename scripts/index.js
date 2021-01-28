@@ -8,6 +8,8 @@ let nameInput = form.querySelector('.popup__input_type_name')
 let aboutInput = form.querySelector('.popup__input_type_about')
 
 function openPopup() {
+    nameInput.value = profileName.textContent
+    aboutInput.value = profileAbout.textContent
     popup.classList.add('popup_opened')
 }
 
