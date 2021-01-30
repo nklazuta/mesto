@@ -1,11 +1,11 @@
-.elements {
+.cards {
     width: calc(100% - 38px);
     padding-top: 36px;
     margin: 0 auto;
 }
 
 @media screen and (min-width: 900px) {
-    .elements {
+    .cards {
         width: 100%;
         padding-top: 51px;
     }

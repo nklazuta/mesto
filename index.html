@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mesto</title>
-  <link rel="stylesheet" href="./pages/index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesto</title>
+    <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body class="page">
@@ -23,43 +23,43 @@
             <button class="profile__add-button" type="button" aria-label="Добавить"></button>
         </section>
 
-        <section class="elements">
-            <ul class="elements__list">
-                <li class="element">
-                    <img class="element__image" src="./images/altai-sergei-wing-z1JGcZdCTWk-unsplash.jpg" alt="Алтай">
-                    <h2 class="element__title">Алтай</h2>
-                    <button class="element__like-button" type="button" aria-label="Like"></button>
+        <section class="cards">
+            <ul class="cards__list">
+               <!-- <li class="card">
+                    <img class="card__image" src="./images/altai-sergei-wing-z1JGcZdCTWk-unsplash.jpg" alt="Алтай">
+                    <h2 class="card__title">Алтай</h2>
+                    <button class="card__like-button" type="button" aria-label="Like"></button>
                 </li>
 
-                <li class="element">
-                    <img class="element__image" src="./images/saint-petersburg-ilia-schelkanov-ctN79wemAI4-unsplash.jpg" alt="Санкт-Петербург">
-                    <h2 class="element__title">Санкт-Петербург</h2>
-                    <button class="element__like-button" type="button" aria-label="Like"></button>
+                <li class="card">
+                    <img class="card__image" src="./images/saint-petersburg-ilia-schelkanov-ctN79wemAI4-unsplash.jpg" alt="Санкт-Петербург">
+                    <h2 class="card__title">Санкт-Петербург</h2>
+                    <button class="card__like-button" type="button" aria-label="Like"></button>
                 </li>
 
-                <li class="element">
-                    <img class="element__image" src="./images/baikal-artemis-faul-4ikF7mfy7c0-unsplash.jpg" alt="Байкал">
-                    <h2 class="element__title">Байкал</h2>
-                    <button class="element__like-button" type="button" aria-label="Like"></button>
+                <li class="card">
+                    <img class="card__image" src="./images/baikal-artemis-faul-4ikF7mfy7c0-unsplash.jpg" alt="Байкал">
+                    <h2 class="card__title">Байкал</h2>
+                    <button class="card__like-button" type="button" aria-label="Like"></button>
                 </li>
 
-                <li class="element">
-                    <img class="element__image" src="./images/sochi-igor-starkov-EMeGuuE3DLg-unsplash.jpg" alt="Сочи">
-                    <h2 class="element__title">Сочи</h2>
-                    <button class="element__like-button" type="button" aria-label="Like"></button>
+                <li class="card">
+                    <img class="card__image" src="./images/sochi-igor-starkov-EMeGuuE3DLg-unsplash.jpg" alt="Сочи">
+                    <h2 class="card__title">Сочи</h2>
+                    <button class="card__like-button" type="button" aria-label="Like"></button>
                 </li>
 
-                <li class="element">
-                    <img class="element__image" src="./images/teriberka-alexey-elfimov-Fe360foy5kI-unsplash.jpg" alt="Териберка">
-                    <h2 class="element__title">Териберка</h2>
-                    <button class="element__like-button" type="button" aria-label="Like"></button>
+                <li class="card">
+                    <img class="card__image" src="./images/teriberka-alexey-elfimov-Fe360foy5kI-unsplash.jpg" alt="Териберка">
+                    <h2 class="card__title">Териберка</h2>
+                    <button class="card__like-button" type="button" aria-label="Like"></button>
                 </li>
 
-                <li class="element">
-                    <img class="element__image" src="./images/vladivostok-pavel-anoshin-Sr79GsbRHjg-unsplash.jpg" alt="Владивосток">
-                    <h2 class="element__title">Владивосток</h2>
-                    <button class="element__like-button" type="button" aria-label="Like"></button>
-                </li>
+                <li class="card">
+                    <img class="card__image" src="./images/vladivostok-pavel-anoshin-Sr79GsbRHjg-unsplash.jpg" alt="Владивосток">
+                    <h2 class="card__title">Владивосток</h2>
+                    <button class="card__like-button" type="button" aria-label="Like"></button>
+                </li>-->
             </ul>
         </section>
     </main>
@@ -79,6 +79,14 @@
             <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
         </div>
     </div>
+
+    <template class="card__template">
+        <li class="card">
+            <img class="card__image" src="#" alt="Заготовка картинки">
+            <h2 class="card__title"></h2>
+            <button class="card__like-button" type="button" aria-label="Like"></button>
+        </li>
+    </template>
     <script src="./scripts/index.js"></script>
 </body>
 </html>
