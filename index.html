@@ -68,9 +68,9 @@
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <div class="popup popup_type_edit">
         <div class="popup__container">
-            <form class="popup__form" name="form">
+            <form class="popup__form" name="edit-form">
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <input class="popup__input popup__input_type_name" type="text" name="name" value="Жак-Ив Кусто" placeholder="Имя" required>
                 <input class="popup__input popup__input_type_about" type="text" name="about" value="Исследователь океана" placeholder="Профессия" required>
@@ -80,9 +80,21 @@
         </div>
     </div>
 
+    <div class="popup popup_type_add">
+        <div class="popup__container">
+            <form class="popup__form" name="add-form">
+                <h2 class="popup__title">Новое место</h2>
+                <input class="popup__input popup__input_type_place" type="text" name="place" placeholder="Название" required>
+                <input class="popup__input popup__input_type_link" type="text" name="link" placeholder="Ссылка на картинку" required>
+                <button class="popup__submit-button" type="submit">Создать</button>
+            </form>
+            <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+        </div>
+    </div>
+
     <template class="card__template">
         <li class="card">
-            <img class="card__image" src="#" alt="Заготовка картинки">
+            <img class="card__image" src="#" alt="Фотография">
             <h2 class="card__title"></h2>
             <button class="card__like-button" type="button" aria-label="Like"></button>
         </li>
