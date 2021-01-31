@@ -24,43 +24,7 @@
         </section>
 
         <section class="cards">
-            <ul class="cards__list">
-               <!-- <li class="card">
-                    <img class="card__image" src="./images/altai-sergei-wing-z1JGcZdCTWk-unsplash.jpg" alt="Алтай">
-                    <h2 class="card__title">Алтай</h2>
-                    <button class="card__like-button" type="button" aria-label="Like"></button>
-                </li>
-
-                <li class="card">
-                    <img class="card__image" src="./images/saint-petersburg-ilia-schelkanov-ctN79wemAI4-unsplash.jpg" alt="Санкт-Петербург">
-                    <h2 class="card__title">Санкт-Петербург</h2>
-                    <button class="card__like-button" type="button" aria-label="Like"></button>
-                </li>
-
-                <li class="card">
-                    <img class="card__image" src="./images/baikal-artemis-faul-4ikF7mfy7c0-unsplash.jpg" alt="Байкал">
-                    <h2 class="card__title">Байкал</h2>
-                    <button class="card__like-button" type="button" aria-label="Like"></button>
-                </li>
-
-                <li class="card">
-                    <img class="card__image" src="./images/sochi-igor-starkov-EMeGuuE3DLg-unsplash.jpg" alt="Сочи">
-                    <h2 class="card__title">Сочи</h2>
-                    <button class="card__like-button" type="button" aria-label="Like"></button>
-                </li>
-
-                <li class="card">
-                    <img class="card__image" src="./images/teriberka-alexey-elfimov-Fe360foy5kI-unsplash.jpg" alt="Териберка">
-                    <h2 class="card__title">Териберка</h2>
-                    <button class="card__like-button" type="button" aria-label="Like"></button>
-                </li>
-
-                <li class="card">
-                    <img class="card__image" src="./images/vladivostok-pavel-anoshin-Sr79GsbRHjg-unsplash.jpg" alt="Владивосток">
-                    <h2 class="card__title">Владивосток</h2>
-                    <button class="card__like-button" type="button" aria-label="Like"></button>
-                </li>-->
-            </ul>
+            <ul class="cards__list"></ul>
         </section>
     </main>
 
@@ -92,11 +56,20 @@
         </div>
     </div>
 
+    <div class="popup popup_type_image">
+        <div class="popup__picture-container">
+            <img class="popup__picture" src="#" alt="Фотография">
+            <p class="popup__picture-title"></p>
+            <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+        </div>
+    </div>
+
     <template class="card__template">
         <li class="card">
             <img class="card__image" src="#" alt="Фотография">
             <h2 class="card__title"></h2>
             <button class="card__like-button" type="button" aria-label="Like"></button>
+            <button class="card__delete-button" type="button" aria-label="Удалить карточку"></button>
         </li>
     </template>
     <script src="./scripts/index.js"></script>

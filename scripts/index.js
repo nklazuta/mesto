@@ -44,6 +44,9 @@ const placeInpit = addForm.querySelector('.popup__input_type_place');
 const linkInpit = addForm.querySelector('.popup__input_type_link');
 const addCloseButton = addPopup.querySelector('.popup__close-button');
 
+const imagePopup = document.querySelector('.popup_type_image');
+const imageCloseButton = imagePopup.querySelector('.popup__close-button');
+
 function render() {
     initialCards.forEach(renderCard);
 };
@@ -52,8 +55,19 @@ function renderCard(element) {
     const htmlElement = cardTemplate.cloneNode(true);
     htmlElement.querySelector('.card__image').setAttribute('src', element.link);
     htmlElement.querySelector('.card__title').innerText = element.name;
+
     htmlElement.querySelector('.card__like-button').addEventListener('click', (event) => {
         event.target.classList.toggle('card__like-button_active');
+    });
+
+    htmlElement.querySelector('.card__delete-button').addEventListener('click', (event) => {
+        event.target.closest('.card').remove();
+    });
+
+    htmlElement.querySelector('.card__image').addEventListener('click', (event) => {
+        openPopup(imagePopup);
+        imagePopup.querySelector('.popup__picture-title').innerText = element.name;
+        imagePopup.querySelector('.popup__picture').setAttribute('src', element.link);
     });
 
     cardsList.prepend(htmlElement);
@@ -75,7 +89,7 @@ function handleEdit (event) {
     event.preventDefault();
     profileName.textContent = nameInput.value;
     profileAbout.textContent = aboutInput.value;
-    closePopup(editPopup)
+    closePopup(editPopup);
 };
 
 function handleAdd (event) {
@@ -91,8 +105,8 @@ editButton.addEventListener('click', ()=> openPopup(editPopup));
 addButton.addEventListener('click', ()=> openPopup(addPopup));
 editCloseButton.addEventListener('click', ()=> closePopup(editPopup));
 addCloseButton.addEventListener('click', ()=> closePopup(addPopup));
+imageCloseButton.addEventListener('click', ()=> closePopup(imagePopup));
 editForm.addEventListener('submit', handleEdit);
 addForm.addEventListener('submit', handleAdd);
-
 
 render();
