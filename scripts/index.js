@@ -92,12 +92,15 @@ function handleEdit (event) {
     closePopup(editPopup);
 };
 
-function handleAdd (event) {
+function handleAdd (event, element) {
     event.preventDefault();
-    const htmlElement = cardTemplate.cloneNode(true);
-    htmlElement.querySelector('.card__image').setAttribute('src', linkInpit.value);
-    htmlElement.querySelector('.card__title').innerText = placeInpit.value;
-    cardsList.prepend(htmlElement);
+
+    const newCard = {
+        name: placeInpit.value,
+        link: linkInpit.value
+    };
+
+    renderCard(newCard);
     closePopup(addPopup);
 };
 
