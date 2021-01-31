@@ -52,6 +52,10 @@ function renderCard(element) {
     const htmlElement = cardTemplate.cloneNode(true);
     htmlElement.querySelector('.card__image').setAttribute('src', element.link);
     htmlElement.querySelector('.card__title').innerText = element.name;
+    htmlElement.querySelector('.card__like-button').addEventListener('click', (event) => {
+        event.target.classList.toggle('card__like-button_active');
+    });
+
     cardsList.prepend(htmlElement);
 };
 
@@ -89,5 +93,6 @@ editCloseButton.addEventListener('click', ()=> closePopup(editPopup));
 addCloseButton.addEventListener('click', ()=> closePopup(addPopup));
 editForm.addEventListener('submit', handleEdit);
 addForm.addEventListener('submit', handleAdd);
+
 
 render();
