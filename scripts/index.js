@@ -52,8 +52,15 @@ function render() {
 };
 
 function renderCard(element) {
+    const card = createCard(element);
+    cardsList.prepend(card);
+};
+
+function createCard(element) {
     const htmlElement = cardTemplate.cloneNode(true);
-    htmlElement.querySelector('.card__image').setAttribute('src', element.link);
+    const image =  htmlElement.querySelector('.card__image');
+    image.setAttribute('src', element.link);
+    image.setAttribute('alt', element.name);
     htmlElement.querySelector('.card__title').innerText = element.name;
 
     htmlElement.querySelector('.card__like-button').addEventListener('click', (event) => {
@@ -64,20 +71,16 @@ function renderCard(element) {
         event.target.closest('.card').remove();
     });
 
-    htmlElement.querySelector('.card__image').addEventListener('click', (event) => {
+    image.addEventListener('click', () => {
         openPopup(imagePopup);
         imagePopup.querySelector('.popup__picture-title').innerText = element.name;
         imagePopup.querySelector('.popup__picture').setAttribute('src', element.link);
     });
 
-    cardsList.prepend(htmlElement);
+    return htmlElement;
 };
 
 function openPopup(popup) {
-    nameInput.value = profileName.textContent;
-    aboutInput.value = profileAbout.textContent;
-    placeInpit.value = '';
-    linkInpit.value = '';
     popup.classList.add('popup_opened');
 };
 
@@ -92,7 +95,7 @@ function handleEdit (event) {
     closePopup(editPopup);
 };
 
-function handleAdd (event, element) {
+function handleAdd (event) {
     event.preventDefault();
 
     const newCard = {
@@ -104,8 +107,18 @@ function handleAdd (event, element) {
     closePopup(addPopup);
 };
 
-editButton.addEventListener('click', ()=> openPopup(editPopup));
-addButton.addEventListener('click', ()=> openPopup(addPopup));
+editButton.addEventListener('click', ()=> {
+    nameInput.value = profileName.textContent;
+    aboutInput.value = profileAbout.textContent;
+    openPopup(editPopup);
+});
+
+addButton.addEventListener('click', ()=> {
+    placeInpit.value = '';
+    linkInpit.value = '';
+    openPopup(addPopup)
+});
+
 editCloseButton.addEventListener('click', ()=> closePopup(editPopup));
 addCloseButton.addEventListener('click', ()=> closePopup(addPopup));
 imageCloseButton.addEventListener('click', ()=> closePopup(imagePopup));
