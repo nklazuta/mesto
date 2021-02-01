@@ -6,4 +6,5 @@
     object-position: center;
     border-radius: 10px 10px 0px 0px;
     grid-area: image;
+    cursor: zoom-in;
 }
