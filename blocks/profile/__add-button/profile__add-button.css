@@ -23,6 +23,8 @@
     .profile__add-button {
         width: 150px;
         background-size: 22px 22px;
-        margin: 0 0 0 244px;
+        margin: 0;
+        grid-area: add-button;
+        justify-self: end;
     }
 }
