@@ -47,6 +47,8 @@ const addCloseButton = addPopup.querySelector('.popup__close-button');
 const imagePopup = document.querySelector('.popup_type_image');
 const imageCloseButton = imagePopup.querySelector('.popup__close-button');
 
+const popupList = Array.from(document.querySelectorAll('.popup'));
+
 function render() {
     initialCards.forEach(renderCard);
 };
@@ -122,6 +124,15 @@ addButton.addEventListener('click', ()=> {
 editCloseButton.addEventListener('click', ()=> closePopup(editPopup));
 addCloseButton.addEventListener('click', ()=> closePopup(addPopup));
 imageCloseButton.addEventListener('click', ()=> closePopup(imagePopup));
+
+popupList.forEach((popupElement) => {
+    popupElement.addEventListener('click', ((event) => {
+        if (event.target === event.currentTarget) {
+            closePopup(popupElement);
+        };
+    }));
+});
+
 editForm.addEventListener('submit', handleEdit);
 addForm.addEventListener('submit', handleAdd);
 
