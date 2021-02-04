@@ -67,13 +67,13 @@ const createCard = element => {
 const openPopup = popup => {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', handleEscPopup);
-    popup.addEventListener('click', handleCloseButton);
+    popup.addEventListener('click', handleClose);
 };
 
 const closePopup = popup => {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', handleEscPopup);
-    popup.removeEventListener('click', handleCloseButton);
+    popup.removeEventListener('click', handleClose);
 };
 
 const handleEdit = event => {
@@ -101,7 +101,7 @@ const handleEscPopup = event => {
     }
 };
 
-const handleCloseButton = event => {
+const handleClose = event => {
     if (event.target === event.currentTarget) {
         closePopup(document.querySelector('.popup_opened'));
     }
