@@ -35,19 +35,17 @@ const editPopup = document.querySelector('.popup_type_edit');
 const editForm = editPopup.querySelector('.popup__form');
 const nameInput = editForm.querySelector('.popup__input_type_name');
 const aboutInput = editForm.querySelector('.popup__input_type_about');
-const editCloseButton = editPopup.querySelector('.popup__close-button');
 
 const addButton = document.querySelector('.profile__add-button');
 const addPopup = document.querySelector('.popup_type_add');
 const addForm = addPopup.querySelector('.popup__form');
 const placeInpit = addForm.querySelector('.popup__input_type_place');
 const linkInpit = addForm.querySelector('.popup__input_type_link');
-const addCloseButton = addPopup.querySelector('.popup__close-button');
 
 const imagePopup = document.querySelector('.popup_type_image');
-const imageCloseButton = imagePopup.querySelector('.popup__close-button');
 
 const popupList = Array.from(document.querySelectorAll('.popup'));
+const closeButtonList = Array.from(document.querySelectorAll('.popup__close-button'));
 
 function render() {
     initialCards.forEach(renderCard);
@@ -109,26 +107,26 @@ function handleAdd (event) {
     closePopup(addPopup);
 };
 
-editButton.addEventListener('click', ()=> {
+editButton.addEventListener('click', () => {
     nameInput.value = profileName.textContent;
     aboutInput.value = profileAbout.textContent;
     openPopup(editPopup);
 });
 
-addButton.addEventListener('click', ()=> {
+addButton.addEventListener('click', () => {
     placeInpit.value = '';
     linkInpit.value = '';
     openPopup(addPopup)
 });
 
-editCloseButton.addEventListener('click', ()=> closePopup(editPopup));
-addCloseButton.addEventListener('click', ()=> closePopup(addPopup));
-imageCloseButton.addEventListener('click', ()=> closePopup(imagePopup));
+closeButtonList.forEach((closeButton) => {
+    closeButton.addEventListener('click', (event) => closePopup(event.target.closest('.popup')));
+});
 
-popupList.forEach((popupElement) => {
-    popupElement.addEventListener('click', ((event) => {
+popupList.forEach((popup) => {
+    popup.addEventListener('click', ((event) => {
         if (event.target === event.currentTarget) {
-            closePopup(popupElement);
+            closePopup(popup);
         };
     }));
 });
