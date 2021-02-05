@@ -68,18 +68,6 @@ const openPopup = (popup) => {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', handleEscPopup);
     popup.addEventListener('click', handleClose);
-    cleanErrorMessage(popup);
-};
-
-const cleanErrorMessage = (popup) => {
-    const errorMessage = popup.querySelector('.popup__error');
-    const errorInput = popup.querySelector('.popup__input');
-    const submitButton = popup.querySelector('.popup__submit-button');
-    errorMessage.classList.remove('popup__error_visible');
-    errorInput.classList.remove('popup__input_type_error');
-    if (popup.classList.contains('popup_type_edit')) {
-        submitButton.classList.remove('popup__submit-button_disabled');
-    }
 };
 
 const closePopup = (popup) => {
