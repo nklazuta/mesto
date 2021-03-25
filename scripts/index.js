@@ -1,3 +1,6 @@
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
 const initialCards = [
     {
         name: 'Алтай',
@@ -25,8 +28,19 @@ const initialCards = [
     }
 ];
 
+const configValidation = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit-button',
+    inactiveButtonClass: 'popup__submit-button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+    };
+
 const cardTemplate = document.querySelector(".card__template").content;
 const cardsList = document.querySelector('.cards__list');
+const formList = Array.from(document.querySelectorAll(configValidation.formSelector));
+const closeButtonList = Array.from(document.querySelectorAll('.popup__close-button'));
 
 const editButton = document.querySelector('.profile__edit-button');
 const profileName = document.querySelector('.profile__name');
@@ -44,13 +58,7 @@ const linkInpit = addForm.querySelector('.popup__input_type_link');
 
 const imagePopup = document.querySelector('.popup_type_image');
 
-const closeButtonList = Array.from(document.querySelectorAll('.popup__close-button'));
-
-const render = () => {
-    initialCards.forEach(renderCard);
-};
-
-const renderCard = (element) => {
+const renderCard = element => {
     const card = createCard(element);
     cardsList.prepend(card);
 };
@@ -64,26 +72,26 @@ const createCard = (element) => {
     return htmlElement;
 };
 
-const openPopup = (popup) => {
+const openPopup = popup => {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', handleEscPopup);
     popup.addEventListener('click', handleClose);
 };
 
-const closePopup = (popup) => {
+const closePopup = popup => {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', handleEscPopup);
     popup.removeEventListener('click', handleClose);
 };
 
-const handleEdit = (event) => {
+const handleEdit = event => {
     event.preventDefault();
     profileName.textContent = nameInput.value;
     profileAbout.textContent = aboutInput.value;
     closePopup(editPopup);
 };
 
-const handleAdd = (event) => {
+const handleAdd = event => {
     event.preventDefault();
 
     const newCard = {
@@ -95,13 +103,13 @@ const handleAdd = (event) => {
     closePopup(addPopup);
 };
 
-const handleEscPopup = (event) => {
+const handleEscPopup = event => {
     if (event.keyCode === 27) {
         closePopup(document.querySelector('.popup_opened'));
     }
 };
 
-const handleClose = (event) => {
+const handleClose = event => {
     if (event.target === event.currentTarget) {
         closePopup(document.querySelector('.popup_opened'));
     }
@@ -140,8 +148,8 @@ addButton.addEventListener('click', () => {
     openPopup(addPopup)
 });
 
-closeButtonList.forEach((closeButton) => {
-    closeButton.addEventListener('click', (event) => closePopup(event.target.closest('.popup')));
+closeButtonList.forEach(closeButton => {
+    closeButton.addEventListener('click', event => closePopup(event.target.closest('.popup')));
 });
 
 editForm.addEventListener('submit', handleEdit);
@@ -151,4 +159,14 @@ cardsList.addEventListener('click', handleLikeButton);
 cardsList.addEventListener('click', handleDeleteButton);
 cardsList.addEventListener('click', openImagePopup);
 
-render();
+initialCards.forEach(item => {
+    const card = new Card(item, '.card__template');
+    const cardElement = card.createCard();
+    cardsList.prepend(cardElement);
+});
+
+formList.forEach(formElement => {
+    formElement.addEventListener('submit', event => event.preventDefault());
+    const formValidator = new FormValidator(configValidation, formElement);
+    formValidator.enableValidation();
+});
