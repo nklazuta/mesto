@@ -56,8 +56,6 @@ const addForm = addPopup.querySelector('.popup__form');
 const placeInpit = addForm.querySelector('.popup__input_type_place');
 const linkInpit = addForm.querySelector('.popup__input_type_link');
 
-const imagePopup = document.querySelector('.popup_type_image');
-
 const renderCard = element => {
     const card = createCard(element);
     cardsList.prepend(card);
@@ -115,27 +113,6 @@ const handleClose = event => {
     }
 };
 
-const handleLikeButton = (event) => {
-    if (event.target.classList.contains('card__like-button')) {
-        event.target.classList.toggle('card__like-button_active');
-    }
-};
-
-const handleDeleteButton = (event) => {
-    if (event.target.classList.contains('card__delete-button')) {
-        event.target.closest('.card').remove();
-    }
-};
-
-const openImagePopup = (event) => {
-    if (event.target.classList.contains('card__image')) {
-        openPopup(imagePopup);
-        imagePopup.querySelector('.popup__picture-title').textContent = event.target.closest('.card').firstElementChild.textContent;
-        const link = event.target.closest('.card__image').getAttribute('src');
-        imagePopup.querySelector('.popup__picture').setAttribute('src', link);
-    }
-};
-
 editButton.addEventListener('click', () => {
     nameInput.value = profileName.textContent;
     aboutInput.value = profileAbout.textContent;
@@ -154,10 +131,6 @@ closeButtonList.forEach(closeButton => {
 
 editForm.addEventListener('submit', handleEdit);
 addForm.addEventListener('submit', handleAdd);
-
-cardsList.addEventListener('click', handleLikeButton);
-cardsList.addEventListener('click', handleDeleteButton);
-cardsList.addEventListener('click', openImagePopup);
 
 initialCards.forEach(item => {
     const card = new Card(item, '.card__template');
