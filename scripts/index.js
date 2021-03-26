@@ -1,43 +1,11 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+import {
+    initialCards,
+    configValidation,
+    ESC
+} from './constants.js';
 
-const initialCards = [
-    {
-        name: 'Алтай',
-        link: './images/altai-sergei-wing-z1JGcZdCTWk-unsplash.jpg'
-    },
-    {
-        name: 'Санкт-Петербург',
-        link: './images/saint-petersburg-ilia-schelkanov-ctN79wemAI4-unsplash.jpg'
-    },
-    {
-        name: 'Байкал',
-        link:'./images/baikal-artemis-faul-4ikF7mfy7c0-unsplash.jpg'
-    },
-    {
-        name: 'Сочи',
-        link: './images/sochi-igor-starkov-EMeGuuE3DLg-unsplash.jpg'
-    },
-    {
-        name: 'Териберка',
-        link: './images/teriberka-alexey-elfimov-Fe360foy5kI-unsplash.jpg'
-    },
-    {
-        name: 'Владивосток',
-        link: './images/vladivostok-pavel-anoshin-Sr79GsbRHjg-unsplash.jpg'
-    }
-];
-
-const configValidation = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__submit-button',
-    inactiveButtonClass: 'popup__submit-button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
-    };
-
-const cardTemplate = document.querySelector(".card__template").content;
 const cardsList = document.querySelector('.cards__list');
 const formList = Array.from(document.querySelectorAll(configValidation.formSelector));
 const closeButtonList = Array.from(document.querySelectorAll('.popup__close-button'));
@@ -57,29 +25,21 @@ const placeInpit = addForm.querySelector('.popup__input_type_place');
 const linkInpit = addForm.querySelector('.popup__input_type_link');
 
 const renderCard = element => {
-    const card = createCard(element);
-    cardsList.prepend(card);
-};
-
-const createCard = (element) => {
-    const htmlElement = cardTemplate.cloneNode(true);
-    const image =  htmlElement.querySelector('.card__image');
-    image.setAttribute('src', element.link);
-    image.setAttribute('alt', element.name);
-    htmlElement.querySelector('.card__title').textContent = element.name;
-    return htmlElement;
+    const card = new Card(element, '.card__template');
+    const cardElement = card.createCard();
+    cardsList.prepend(cardElement);
 };
 
 const openPopup = popup => {
     popup.classList.add('popup_opened');
-    document.addEventListener('keydown', handleEscPopup);
-    popup.addEventListener('click', handleClose);
+    document.addEventListener('keydown', handleEscClose);
+    popup.addEventListener('click', handleOverlayClose);
 };
 
 const closePopup = popup => {
     popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', handleEscPopup);
-    popup.removeEventListener('click', handleClose);
+    document.removeEventListener('keydown', handleEscClose);
+    popup.removeEventListener('click', handleOverlayClose);
 };
 
 const handleEdit = event => {
@@ -101,13 +61,13 @@ const handleAdd = event => {
     closePopup(addPopup);
 };
 
-const handleEscPopup = event => {
-    if (event.keyCode === 27) {
+const handleEscClose = event => {
+    if (event.code === ESC) {
         closePopup(document.querySelector('.popup_opened'));
     }
 };
 
-const handleClose = event => {
+const handleOverlayClose = event => {
     if (event.target === event.currentTarget) {
         closePopup(document.querySelector('.popup_opened'));
     }
@@ -132,11 +92,7 @@ closeButtonList.forEach(closeButton => {
 editForm.addEventListener('submit', handleEdit);
 addForm.addEventListener('submit', handleAdd);
 
-initialCards.forEach(item => {
-    const card = new Card(item, '.card__template');
-    const cardElement = card.createCard();
-    cardsList.prepend(cardElement);
-});
+initialCards.forEach(item => renderCard(item));
 
 formList.forEach(formElement => {
     formElement.addEventListener('submit', event => event.preventDefault());

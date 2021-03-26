@@ -1,3 +1,5 @@
+import { ESC } from './constants.js';
+
 export default class Card {
     constructor(data, selector) {
         this._name = data.name;
@@ -21,21 +23,26 @@ export default class Card {
         this._imagePopup.querySelector('.popup__picture-title').textContent = this._name;
         this._imagePopup.querySelector('.popup__picture').src = this._link;
 
-        this._imagePopup.addEventListener('click', event => {
-            if (event.target === event.currentTarget) {
-                this._handleCloseImagePopup(this._imagePopup);
-            }
-        });
-        
-        document.addEventListener('keydown', event => {
-            if (event.keyCode === 27) {
-                this._handleCloseImagePopup(this._imagePopup);
-            }
-        });
+        this._imagePopup.addEventListener('click', event => this._handleOverlayClose(event));
+        document.addEventListener('keydown', event => this._handleEscClose(event));
     }
 
     _handleCloseImagePopup() {
         this._imagePopup.classList.remove('popup_opened');
+        this._imagePopup.removeEventListener('click', event => this._handleOverlayClose(event));
+        document.removeEventListener('keydown', event => this._handleEscClose(event));
+    }
+
+    _handleEscClose(event) {
+        if (event.code === ESC) {
+            this._handleCloseImagePopup(this._imagePopup);
+        }
+    }
+
+    _handleOverlayClose(event) {
+        if (event.target === event.currentTarget) {
+            this._handleCloseImagePopup(this._imagePopup);
+        }
     }
 
     _handleLikeButton() {
