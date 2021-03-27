@@ -1,9 +1,9 @@
 import { ESC } from './constants.js';
 
 export default class Card {
-    constructor(data, selector) {
-        this._name = data.name;
-        this._link = data.link;
+    constructor({name, link}, selector) {
+        this._name = name;
+        this._link = link;
         this._selector = selector;
         this._imagePopup = document.querySelector('.popup_type_image');
     }
