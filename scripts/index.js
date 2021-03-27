@@ -30,7 +30,7 @@ const renderCard = element => {
     cardsList.prepend(cardElement);
 };
 
-const openPopup = popup => {
+/*const openPopup = popup => {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', handleEscClose);
     popup.addEventListener('click', handleOverlayClose);
@@ -40,7 +40,7 @@ const closePopup = popup => {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', handleEscClose);
     popup.removeEventListener('click', handleOverlayClose);
-};
+};*/
 
 const handleEdit = event => {
     event.preventDefault();
@@ -61,7 +61,7 @@ const handleAdd = event => {
     closePopup(addPopup);
 };
 
-const handleEscClose = event => {
+/*const handleEscClose = event => {
     if (event.code === ESC) {
         closePopup(document.querySelector('.popup_opened'));
     }
@@ -71,7 +71,7 @@ const handleOverlayClose = event => {
     if (event.target === event.currentTarget) {
         closePopup(document.querySelector('.popup_opened'));
     }
-};
+};*/
 
 editButton.addEventListener('click', () => {
     nameInput.value = profileName.textContent;
@@ -85,12 +85,12 @@ addButton.addEventListener('click', () => {
     openPopup(addPopup)
 });
 
-closeButtonList.forEach(closeButton => {
+/*closeButtonList.forEach(closeButton => {
     closeButton.addEventListener('click', event => closePopup(event.target.closest('.popup')));
 });
 
 editForm.addEventListener('submit', handleEdit);
-addForm.addEventListener('submit', handleAdd);
+addForm.addEventListener('submit', handleAdd);*/
 
 initialCards.forEach(item => renderCard(item));
 
