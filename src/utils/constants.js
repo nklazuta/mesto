@@ -1,28 +1,17 @@
+const altaiImage = new URL('../images/altai.jpg', import.meta.url);
+const saintPetersburgImage = new URL('../images/saint-petersburg.jpg', import.meta.url);
+const baikalImage = new URL('../images/baikal.jpg', import.meta.url);
+const sochiImage = new URL('../images/sochi.jpg', import.meta.url);
+const teriberkaImage = new URL('../images/teriberka.jpg', import.meta.url);
+const vladivostokImage = new URL('../images/vladivostok.jpg', import.meta.url);
+
 export const initialCards = [
-    {
-        name: 'Алтай',
-        link: './images/altai-sergei-wing-z1JGcZdCTWk-unsplash.jpg'
-    },
-    {
-        name: 'Санкт-Петербург',
-        link: './images/saint-petersburg-ilia-schelkanov-ctN79wemAI4-unsplash.jpg'
-    },
-    {
-        name: 'Байкал',
-        link:'./images/baikal-artemis-faul-4ikF7mfy7c0-unsplash.jpg'
-    },
-    {
-        name: 'Сочи',
-        link: './images/sochi-igor-starkov-EMeGuuE3DLg-unsplash.jpg'
-    },
-    {
-        name: 'Териберка',
-        link: './images/teriberka-alexey-elfimov-Fe360foy5kI-unsplash.jpg'
-    },
-    {
-        name: 'Владивосток',
-        link: './images/vladivostok-pavel-anoshin-Sr79GsbRHjg-unsplash.jpg'
-    }
+    { name: 'Алтай', link: altaiImage },
+    { name: 'Санкт-Петербург', link: saintPetersburgImage },
+    { name: 'Байкал', link: baikalImage },
+    { name: 'Сочи', link: sochiImage },
+    { name: 'Териберка', link: teriberkaImage },
+    { name: 'Владивосток', link: vladivostokImage }
 ];
 
 export const configValidation = {
