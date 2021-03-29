@@ -1,13 +1,9 @@
-import { ESC } from './constants.js';
-import PopupWithImage from '/.PopupWithImage';
-
 export default class Card {
-    constructor({name, link, handleCardClick}, selector) {
+    constructor({name, link}, selector, handleCardClick) {
         this._name = name;
         this._link = link;
         this._handleCardClick = handleCardClick;
         this._selector = selector;
-        /*this._imagePopup = document.querySelector('.popup_type_image');*/
     }
 
     _getTemplate() {
@@ -23,33 +19,6 @@ export default class Card {
     _handleOpenImagePopup() {
         this._handleCardClick();
     }
-
-    /*_handleOpenImagePopup() {
-        this._imagePopup.classList.add('popup_opened');
-        this._imagePopup.querySelector('.popup__picture-title').textContent = this._name;
-        this._imagePopup.querySelector('.popup__picture').src = this._link;
-
-        this._imagePopup.addEventListener('click', event => this._handleOverlayClose(event));
-        document.addEventListener('keydown', event => this._handleEscClose(event));
-    }
-
-    _handleCloseImagePopup() {
-        this._imagePopup.classList.remove('popup_opened');
-        this._imagePopup.removeEventListener('click', event => this._handleOverlayClose(event));
-        document.removeEventListener('keydown', event => this._handleEscClose(event));
-    }
-
-    _handleEscClose(event) {
-        if (event.code === ESC) {
-            this._handleCloseImagePopup(this._imagePopup);
-        }
-    }
-
-    _handleOverlayClose(event) {
-        if (event.target === event.currentTarget) {
-            this._handleCloseImagePopup(this._imagePopup);
-        }
-    }*/
 
     _handleLikeButton() {
         this._card.querySelector('.card__like-button').classList.toggle('card__like-button_active');
