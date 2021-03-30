@@ -75,8 +75,7 @@ editButton.addEventListener('click', () => {
 });
 
 addButton.addEventListener('click', () => {
-    addSubmitButton.setAttribute('disabled', true);
-    addSubmitButton.classList.add('popup__submit-button_disabled');
+    addSubmitButton.toggleButtonState();
     addPopup.open();
 });
 
