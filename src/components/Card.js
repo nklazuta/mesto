@@ -25,7 +25,8 @@ export default class Card {
     }
 
     _handleDeleteButton() {
-        this._card.closest('.card').remove();
+        this._card.remove();
+        this._card = null;
     }
 
     _setEventListeners() {

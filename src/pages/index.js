@@ -14,7 +14,9 @@ import {
     imagePopupSelector,
     editPopupSelector,
     addPopupSelector,
-    formList,
+    addSubmitButton,
+    editForm,
+    addForm,
     profileName,
     profileAbout,
     editButton,
@@ -24,11 +26,11 @@ import {
 } from '../utils/constants.js';
 
 const createNewCard = item => {
-    const popupWithImage = new PopupWithImage(item, imagePopupSelector);
-        popupWithImage.setEventListeners();
-        const card = new Card(item, cardTemplateSelector, () => popupWithImage.open());
-        cards.addItem(card.createCard());
+const card = new Card(item, cardTemplateSelector, () => popupWithImage.open(item));
+    cards.addItem(card.createCard());
 };
+
+const handleCardClick = (item) => popupWithImage.open(item);
 
 const cards = new Section({
     items: initialCards,
@@ -37,6 +39,9 @@ const cards = new Section({
 
 const userInfo = new UserInfo(profileName, profileAbout);
 let userInfoData = userInfo.getUserInfo();
+
+const popupWithImage = new PopupWithImage(imagePopupSelector);
+popupWithImage.setEventListeners();
 
 const editPopup = new PopupWithForm(editPopupSelector, {
     handleSubmitForm: newData => {
@@ -57,10 +62,11 @@ const addPopup = new PopupWithForm(addPopupSelector, {
     }
 });
 
-formList.forEach(formElement => {
-    const formValidator = new FormValidator(configValidation, formElement);
-    formValidator.enableValidation();
-});
+const editFormValidator = new FormValidator(configValidation, editForm);
+editFormValidator.enableValidation();
+
+const addFormValidator = new FormValidator(configValidation, addForm);
+addFormValidator.enableValidation();
 
 editButton.addEventListener('click', () => {
     nameInput.value = userInfoData.name;
@@ -68,7 +74,11 @@ editButton.addEventListener('click', () => {
     editPopup.open();
 });
 
-addButton.addEventListener('click', () => addPopup.open());
+addButton.addEventListener('click', () => {
+    addSubmitButton.setAttribute('disabled', true);
+    addSubmitButton.classList.add('popup__submit-button_disabled');
+    addPopup.open();
+});
 
 editPopup.setEventListeners();
 addPopup.setEventListeners();
