@@ -75,7 +75,7 @@ editButton.addEventListener('click', () => {
 });
 
 addButton.addEventListener('click', () => {
-    addSubmitButton.toggleButtonState();
+    addFormValidator.toggleButtonState();
     addPopup.open();
 });
 
