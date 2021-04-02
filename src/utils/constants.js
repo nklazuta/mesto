@@ -28,7 +28,7 @@ const addPopup = document.querySelector('.popup_type_add');
 
 export const editForm = editPopup.querySelector('.popup__form');
 export const addForm = addPopup.querySelector('.popup__form');
-export const addSubmitButton = addPopup.querySelector('.popup__submit-button');
+/*export const addSubmitButton = addPopup.querySelector('.popup__submit-button');*/
 export const editButton = document.querySelector('.profile__edit-button');
 export const addButton = document.querySelector('.profile__add-button');
 export const profileName = document.querySelector('.profile__name');
