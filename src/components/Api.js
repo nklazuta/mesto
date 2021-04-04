@@ -4,41 +4,74 @@ export default class Api {
         this._headers = headers;
     }
 
-    getServerUserInfo(profileNameSelector, profileAboutSelector, profileAvatarSelector) {
-        return fetch(`this._baseUrl/users/me`, {
+    _parseResponse(res) {
+        if (res.ok) {
+            return res.json();
+        }
+
+        return Promise.reject(`Ошибка: ${res.status}`);
+    }
+
+    getUserInfo() {
+        return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .then(info => {
-            this._userInfo = {
-                name: info.name,
-                about: info.about,
-                avatar: info.avatar
-            };
-    
-            profileNameSelector.textContent = this._userInfo.name;
-            profileAboutSelector.textContent = this._userInfo.about;
-            profileAvatarSelector.src =this._userInfo.avatar;
-        })
-        .catch(err => console.log(err));
+            .then(res => this._parseResponse(res))
+            .catch(err => console.log(err));
     }
 
     getInitialCards() {
-        return fetch(`this._baseUrl/cards`, {
+        return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
+            .then(res => this._parseResponse(res))
+            .catch(err => console.log(err));
+    }
 
-            return Promise.reject(`Ошибка: ${res.status}`);
-        });
+    handleEditProfile({name, about}) {
+        return fetch(`${this._baseUrl}/users/me`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: name,
+                about: about
+            })
+        })
+            .then(res => this._parseResponse(res))
+            .catch(err => console.log(err));
+    }
+
+    handleAddCard({name, link}) {
+        return fetch(`${this._baseUrl}/cards`, {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: name,
+                link: link
+            })
+        })
+            .then(res => this._parseResponse(res))
+            .catch(err => console.log(err));
+    }
+
+    handleDeleteCard(cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}`, {
+            method: 'DELETE',
+            headers: this._headers
+        })
+            .then(res => this._parseResponse(res))
+            .catch(err => console.log(err));
+    }
+
+    handleUpdateAvatar({avatar}) {
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar: avatar
+            })
+        })
+            .then(res => this._parseResponse(res))
+            .catch(err => console.log(err));
     }
 }
