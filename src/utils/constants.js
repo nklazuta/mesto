@@ -22,7 +22,6 @@ const updateAvatarPopup = document.querySelector('.popup_type_avatar-update');
 export const editForm = editPopup.querySelector('.popup__form');
 export const addForm = addPopup.querySelector('.popup__form');
 export const updateAvatarForm = updateAvatarPopup.querySelector('.popup__form');
-/*export const addSubmitButton = addPopup.querySelector('.popup__submit-button');*/
 export const editButton = document.querySelector('.profile__edit-button');
 export const addButton = document.querySelector('.profile__add-button');
 export const updateAvatarButton = document.querySelector('.profile__avatar-update');
@@ -39,6 +38,5 @@ export const updateAvatarPopupSelector = '.popup_type_avatar-update';
 export const addPopupSelector = '.popup_type_add';
 export const confirmPopupSelector = '.popup_type_confirm';
 export const imagePopupSelector = '.popup_type_image';
-//export const likeButtonSelector = '.card__like-button';
 
 export const ESC = 'Escape';

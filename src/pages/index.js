@@ -31,24 +31,22 @@ import {
     aboutField
 } from '../utils/constants.js';
 
-const handleLike = card => {
-    card.likes.forEach(like => {
-        if (like._id !== card.myId) {
-            api.handlePutLike(card.cardId)
-                .then((res) => {
-                    card.toggleCounter(res);
-                    card.addLike();
-                })
-                .catch(err => console.log('Ошибка: ', err));
-        } else {
-            api.handleDeleteLike(card.cardId)
-                .then((res) => {
-                    card.toggleCounter(res);
-                    card.deleteLike();
-                })
-                .catch(err => console.log('Ошибка: ', err));
-        }
-    })
+const handleLike = (card, myId) => {
+    if (card.likes.some(like => like._id === myId)) {
+        api.handleDeleteLike(card.cardId)
+            .then(res => {
+                card.updateCounter(res);
+                card.toggleLike();
+            })
+            .catch(err => console.log('Ошибка: ', err));
+    } else { 
+        api.handlePutLike(card.cardId)
+            .then(res => {
+                card.updateCounter(res);
+                card.toggleLike();
+            })
+            .catch(err => console.log('Ошибка: ', err));
+    }
 };
 
 const handleDelete = card => {
@@ -56,8 +54,33 @@ const handleDelete = card => {
     confirmPopup.open();
 };
 
+const createNewCard = (item, myId) => {
+    const card = new Card({
+        data: {
+            name: item.name,
+            link: item.link,
+            owner: item.owner,
+            likes: item.likes,
+            _id: item._id
+        },
+        handleCardClick: () => popupWithImage.open(item),
+        handleLikeCard: () => handleLike(card, myId),
+        handleDeleteIconClick: () => handleDelete(card)
+    }, cardTemplateSelector, myId);
+    
+    return card;
+};
+
 const api = new Api(configApi);
+
 const profile = new UserInfo(profileName, profileAbout, profileAvatar);
+
+const cardList = new Section({
+    renderer: (item, myId) => {
+        const newCard = createNewCard(item, myId);
+        cardList.addItem(newCard.createCard());
+    }
+}, cardsListContainer);
 
 const popupWithImage = new PopupWithImage(imagePopupSelector);
 
@@ -87,6 +110,21 @@ const updateAvatarPopup = new PopupWithForm(updateAvatarPopupSelector, {
     }
 });
 
+const addPopup = new PopupWithForm(addPopupSelector, {
+    handleSubmitForm: (item) => {
+        addPopup.renderLoading(true);
+        api.handleAddCard(item)
+            .then(res => {
+                const ownerId = res.owner._id;
+                const newCard = createNewCard(res, ownerId);
+                cardList.addItem(newCard.createCard());
+                addPopup.close();
+            })
+            .catch(err => console.log('Ошибка: ', err))
+            .finally(() => addPopup.renderLoading(false));
+    }
+});
+
 const confirmPopup = new PopupWithConfirm(confirmPopupSelector, {
     handleSubmitForm: card => {
         api.handleDeleteCard(card.cardId)
@@ -111,8 +149,14 @@ updateAvatarButton.addEventListener('click', () => {
     updateAvatarPopup.open();
 });
 
+addButton.addEventListener('click', () => {
+    addFormValidator.toggleButtonState();
+    addPopup.open();
+});
+
 editPopup.setEventListeners();
 updateAvatarPopup.setEventListeners();
+addPopup.setEventListeners();
 confirmPopup.setEventListeners();
 popupWithImage.setEventListeners();
 
@@ -126,52 +170,6 @@ api.getInfoAndCards()
         profile.setUserInfo(userInfo);
         profile.setUserAvatar(userInfo);
         const myId = profile.setUserId(userInfo);
-
-        const createNewCard = item => {
-            const card = new Card({
-                data: {
-                    name: item.name,
-                    link: item.link,
-                    owner: item.owner,
-                    likes: item.likes,
-                    _id: item._id
-                },
-                handleCardClick: () => popupWithImage.open(item),
-                handleLikeCard: () => handleLike(card),
-                handleDeleteIconClick: () => handleDelete(card)
-            }, cardTemplateSelector, myId);
-
-            return card;
-        };
-        
-        const cardList = new Section({
-            renderer: item => {
-                const newCard = createNewCard(item);
-                cardList.addItem(newCard.createCard());
-            }
-        }, cardsListContainer);
-
-        const addPopup = new PopupWithForm(addPopupSelector, {
-            handleSubmitForm: item => {
-                addPopup.renderLoading(true);
-                api.handleAddCard(item)
-                    .then(res => {
-                        const newCard = createNewCard(res);
-                        cardList.addItem(newCard.createCard());
-                        addPopup.close();
-                    })
-                    .catch(err => console.log('Ошибка: ', err))
-                    .finally(() => addPopup.renderLoading(false));
-            }
-        });
-
-        addButton.addEventListener('click', () => {
-            addFormValidator.toggleButtonState();
-            addPopup.open();
-        });
-
-        addPopup.setEventListeners();
-        
-        cardList.renderItems(initialCards.reverse());
+        cardList.renderItems(initialCards.reverse(), myId);
     })
     .catch(err => console.log('Ошибка: ', err));

@@ -30,21 +30,23 @@ export default class Card {
         this._handleLikeCard();
     }
 
-    addLike() {
-        this._cardLikeButton.classList.add('card__like-button_active');
+    _handleDeleteButton() {
+        this._handleDeleteIconClick();
     }
 
-    deleteLike() {
-        this._cardLikeButton.classList.remove('card__like-button_active');
+    toggleLike() {
+        this._cardLikeButton.classList.toggle('card__like-button_active');
     }
 
-    toggleCounter({likes}) {
+    updateCounter({likes}) {
         this.likes = likes;
         this._cardLikesCounter.textContent = this.likes.length;
     }
 
-    _handleDeleteButton() {
-        this._handleDeleteIconClick();
+    _isLike() {
+        if (this.likes.some(like => like._id === this.myId)) {
+            this.toggleLike(this._card);
+        }
     }
 
     _isOwner() {
@@ -71,6 +73,7 @@ export default class Card {
         this._cardLikesCounter = this._card.querySelector('.card__like-counter');
         this._cardLikesCounter.textContent = this.likes.length;
 
+        this._isLike();
         this._isOwner();
         this._setEventListeners();
 

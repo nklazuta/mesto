@@ -53,8 +53,8 @@
         <div class="popup__container">
             <form class="popup__form" name="update-form" novalidate>
                 <h2 class="popup__title">Обновить аватар</h2>
-                <input class="popup__input popup__input_type_avatar-link" id="avatar-input" type="url" name="link" placeholder="Ссылка на новый аватар" required>
-                <span class="popup__error link-input-error"></span>
+                <input class="popup__input popup__input_type_avatar-link" id="avatar-input" type="url" name="avatar" placeholder="Ссылка на новый аватар" required>
+                <span class="popup__error avatar-input-error"></span>
                 <button class="popup__submit-button" type="submit">Сохранить</button>
                 <button class="popup__loading-button" type="button">Сохранение...</button>
             </form>
@@ -101,7 +101,7 @@
             <img class="card__image" src="#" alt="Фотография">
             <div class="card__like">
                 <button class="card__like-button" type="button" aria-label="Like"></button>
-                <p class="card__like-counter">0</p>
+                <p class="card__like-counter"></p>
             </div>
             <button class="card__delete-button" type="button" aria-label="Удалить карточку"></button>
         </li>

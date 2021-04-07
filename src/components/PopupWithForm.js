@@ -26,7 +26,7 @@ constructor(popupSelector, {handleSubmitForm}) {
 
     setEventListeners() {
         super.setEventListeners();
-        this._form.addEventListener('submit', (event) => {
+        this._form.addEventListener('submit', event => {
             event.preventDefault();
             this.formData = this._getInputValues();
             this._handleSubmitForm(this.formData);
