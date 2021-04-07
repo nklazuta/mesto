@@ -22,6 +22,6 @@ export default class UserInfo {
     }
 
     setUserId({_id}) {
-        this._userId = _id;
+        return this._userId = _id;
     }
 }

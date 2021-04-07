@@ -1,15 +1,15 @@
-import { userSetter } from "core-js/fn/symbol";
-
 export default class Card {
-    constructor({data, handleCardClick, handleLikeCard, handleDeleteIconClick}, selector) {
+    constructor({data, handleCardClick, handleLikeCard, handleDeleteIconClick}, selector, myId) {
         this._name = data.name;
         this._link = data.link;
-        this._likes = data.likes;
-        this._ownerId = data.owner._id;
+        this.likes = data.likes;
+        this._owner = data.owner;
+        this.cardId = data._id;
         this._handleCardClick = handleCardClick;
         this._handleLikeCard = handleLikeCard;
         this._handleDeleteIconClick = handleDeleteIconClick;
         this._selector = selector;
+        this.myId = myId;
     }
 
     _getTemplate() {
@@ -30,12 +30,25 @@ export default class Card {
         this._handleLikeCard();
     }
 
+    addLike() {
+        this._cardLikeButton.classList.add('card__like-button_active');
+    }
+
+    deleteLike() {
+        this._cardLikeButton.classList.remove('card__like-button_active');
+    }
+
+    toggleCounter({likes}) {
+        this.likes = likes;
+        this._cardLikesCounter.textContent = this.likes.length;
+    }
+
     _handleDeleteButton() {
         this._handleDeleteIconClick();
     }
 
-    _isOwner(userId) {
-        if (this._ownerId !== userId) {
+    _isOwner() {
+        if (this._owner._id !== this.myId) {
             this._cardDeleteButton.classList.add('card__delete-button_hidden');
         }
     }
@@ -46,20 +59,26 @@ export default class Card {
         this._cardDeleteButton.addEventListener('click', () => this._handleDeleteButton());
     }
 
-    createCard(userId) {
+    createCard() {
         this._card = this._getTemplate();
         this._image = this._card.querySelector('.card__image');
         this._image.src = this._link;
         this._image.alt = this._name;
+        this._card.cardId = this.cardId;
         this._card.querySelector('.card__title').textContent = this._name;
         this._cardLikeButton = this._card.querySelector('.card__like-button');
         this._cardDeleteButton = this._card.querySelector('.card__delete-button');
         this._cardLikesCounter = this._card.querySelector('.card__like-counter');
-        this._cardLikesCounter.textContent = this._likes.length;
+        this._cardLikesCounter.textContent = this.likes.length;
 
-        this._isOwner(userId);
+        this._isOwner();
         this._setEventListeners();
 
         return this._card;
+    }
+
+    removeCard() {
+        this._card.remove();
+        this._card = null;
     }
 }

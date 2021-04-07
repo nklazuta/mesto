@@ -1,19 +1,3 @@
-const altaiImage = new URL('../images/altai.jpg', import.meta.url);
-const saintPetersburgImage = new URL('../images/saint-petersburg.jpg', import.meta.url);
-const baikalImage = new URL('../images/baikal.jpg', import.meta.url);
-const sochiImage = new URL('../images/sochi.jpg', import.meta.url);
-const teriberkaImage = new URL('../images/teriberka.jpg', import.meta.url);
-const vladivostokImage = new URL('../images/vladivostok.jpg', import.meta.url);
-
-export const initialCards = [
-    { name: 'Алтай', link: altaiImage },
-    { name: 'Санкт-Петербург', link: saintPetersburgImage },
-    { name: 'Байкал', link: baikalImage },
-    { name: 'Сочи', link: sochiImage },
-    { name: 'Териберка', link: teriberkaImage },
-    { name: 'Владивосток', link: vladivostokImage }
-];
-
 export const configValidation = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
@@ -41,6 +25,7 @@ export const updateAvatarForm = updateAvatarPopup.querySelector('.popup__form');
 /*export const addSubmitButton = addPopup.querySelector('.popup__submit-button');*/
 export const editButton = document.querySelector('.profile__edit-button');
 export const addButton = document.querySelector('.profile__add-button');
+export const updateAvatarButton = document.querySelector('.profile__avatar-update');
 export const profileName = document.querySelector('.profile__name');
 export const profileAbout = document.querySelector('.profile__about');
 export const profileAvatar = document.querySelector('.profile__avatar');
@@ -54,6 +39,6 @@ export const updateAvatarPopupSelector = '.popup_type_avatar-update';
 export const addPopupSelector = '.popup_type_add';
 export const confirmPopupSelector = '.popup_type_confirm';
 export const imagePopupSelector = '.popup_type_image';
-export const likeButtonSelector = '.card__like-button';
+//export const likeButtonSelector = '.card__like-button';
 
 export const ESC = 'Escape';

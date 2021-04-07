@@ -12,6 +12,10 @@ export default class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
     }
 
+    getInfoAndCards() {
+        return Promise.all([this.getUserInfo(), this.getInitialCards()])
+    }
+
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers
@@ -56,6 +60,24 @@ export default class Api {
 
     handleDeleteCard(cardId) {
         return fetch(`${this._baseUrl}/cards/${cardId}`, {
+            method: 'DELETE',
+            headers: this._headers
+        })
+            .then(res => this._parseResponse(res))
+            .catch(err => console.log(err));
+    }
+
+    handlePutLike(cardId) {
+        return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+            method: 'PUT',
+            headers: this._headers
+        })
+            .then(res => this._parseResponse(res))
+            .catch(err => console.log(err));
+    }
+
+    handleDeleteLike(cardId) {
+        return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
             method: 'DELETE',
             headers: this._headers
         })
