@@ -43,9 +43,9 @@ export default class Card {
         this._cardLikesCounter.textContent = this.likes.length;
     }
 
-    _isLike() {
+    isLike() {
         if (this.likes.some(like => like._id === this.myId)) {
-            this.toggleLike(this._card);
+            this.toggleLike();
         }
     }
 
@@ -73,7 +73,7 @@ export default class Card {
         this._cardLikesCounter = this._card.querySelector('.card__like-counter');
         this._cardLikesCounter.textContent = this.likes.length;
 
-        this._isLike();
+        this.isLike();
         this._isOwner();
         this._setEventListeners();
 

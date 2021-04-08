@@ -31,8 +31,8 @@ import {
     aboutField
 } from '../utils/constants.js';
 
-const handleLike = (card, myId) => {
-    if (card.likes.some(like => like._id === myId)) {
+const handleLike = card => {
+    if (card.isLike()) {
         api.handleDeleteLike(card.cardId)
             .then(res => {
                 card.updateCounter(res);

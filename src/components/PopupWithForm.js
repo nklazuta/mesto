@@ -7,6 +7,7 @@ constructor(popupSelector, {handleSubmitForm}) {
         this._submitButton = this._popup.querySelector('.popup__submit-button');
         this._loadingButton = this._popup.querySelector('.popup__loading-button');
         this._handleSubmitForm = handleSubmitForm;
+        this._inputList = Array.from(this._form.querySelectorAll('.popup__input'));
     }
 
     close() {
@@ -15,7 +16,6 @@ constructor(popupSelector, {handleSubmitForm}) {
     }
 
     _getInputValues() {
-        this._inputList = Array.from(this._form.querySelectorAll('.popup__input'));
         this.inputValues = {};
         this._inputList.forEach(input => {
             this.inputValues[input.name] = input.value;

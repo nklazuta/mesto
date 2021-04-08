@@ -21,7 +21,6 @@ export default class Api {
             headers: this._headers
         })
             .then(res => this._parseResponse(res))
-            .catch(err => console.log(err));
     }
 
     getInitialCards() {
@@ -29,7 +28,6 @@ export default class Api {
             headers: this._headers
         })
             .then(res => this._parseResponse(res))
-            .catch(err => console.log(err));
     }
 
     handleEditProfile({name, about}) {
@@ -42,7 +40,6 @@ export default class Api {
             })
         })
             .then(res => this._parseResponse(res))
-            .catch(err => console.log(err));
     }
 
     handleAddCard({name, link}) {
@@ -55,7 +52,6 @@ export default class Api {
             })
         })
             .then(res => this._parseResponse(res))
-            .catch(err => console.log(err));
     }
 
     handleDeleteCard(cardId) {
@@ -64,7 +60,6 @@ export default class Api {
             headers: this._headers
         })
             .then(res => this._parseResponse(res))
-            .catch(err => console.log(err));
     }
 
     handlePutLike(cardId) {
@@ -73,7 +68,6 @@ export default class Api {
             headers: this._headers
         })
             .then(res => this._parseResponse(res))
-            .catch(err => console.log(err));
     }
 
     handleDeleteLike(cardId) {
@@ -82,7 +76,6 @@ export default class Api {
             headers: this._headers
         })
             .then(res => this._parseResponse(res))
-            .catch(err => console.log(err));
     }
 
     handleUpdateAvatar({avatar}) {
@@ -94,6 +87,5 @@ export default class Api {
             })
         })
             .then(res => this._parseResponse(res))
-            .catch(err => console.log(err));
     }
 }
